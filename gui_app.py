@@ -325,14 +325,14 @@ I18N = {
 # --- Sticker decoder i18n additions ---
 try:
     I18N['ru'].update({
-        "decode_sticker_auto": "Наклейки → PNG (авто)",
-        "decoding_stickers": "Декод стикеров…",
-        "decoded_stickers_n": "Готово: {n} стикеров → {out}",
+        "decode_sticker_auto": "Отдельные текстуры → PNG",
+        "decoding_stickers": "Декод текстур…",
+        "decoded_stickers_n": "Готово: {n} текстур → {out}",
     })
     I18N['en'].update({
-        "decode_sticker_auto": "Stickers → PNG (auto)",
-        "decoding_stickers": "Decoding stickers…",
-        "decoded_stickers_n": "Done: {n} stickers → {out}",
+        "decode_sticker_auto": "Separate textures → PNG",
+        "decoding_stickers": "Decoding textures…",
+        "decoded_stickers_n": "Done: {n} textures → {out}",
     })
 except Exception:
     pass
@@ -576,10 +576,12 @@ class App(tk.Tk):
         ttk.Button(top, text=self.tr("scan_entries"), command=self.on_scan_entries).pack(side=tk.LEFT, padx=6)
         ttk.Button(top, text=self.tr("extract_raw"), command=self.on_extract_raw).pack(side=tk.LEFT)
         ttk.Button(top, text=self.tr("find_pvrt"), command=self.on_scan_pvrt).pack(side=tk.LEFT, padx=6)
-        self._btn_full_deprs = ttk.Button(top, text=self.tr("btn_full_deprs"), command=self.on_full_deprs)
+
+        top2 = ttk.Frame(frm); top2.pack(fill=tk.X, padx=8, pady=(0,6))
+        self._btn_full_deprs = ttk.Button(top2, text=self.tr("btn_full_deprs"), command=self.on_full_deprs)
         self._btn_full_deprs.pack(side=tk.LEFT, padx=6)
-        self._btn_sticker = ttk.Button(top, text=self.tr("decode_sticker_auto"), command=self.on_decode_sticker_auto)
-        self._btn_sticker.pack(side=tk.LEFT, padx=6)
+        self._btn_sticker = ttk.Button(top2, text=self.tr("decode_sticker_auto"), command=self.on_decode_sticker_auto)
+        self._btn_sticker.pack(side=tk.LEFT)
         try:
             _Tooltip(self._btn_full_deprs, self.tr("tip_full_deprs"))
         except Exception:
